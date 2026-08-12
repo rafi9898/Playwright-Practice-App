@@ -1,19 +1,19 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('Exercise 16: Handle Modals and Overlays', async ({ page }) => {
-  await page.goto('/module-4/exercise-16');
+test("Exercise 16: Handle Modal Windows", async ({page}) => {
+    await page.goto("/module-4/exercise-16");
 
-  // Open the modal
-  await page.getByTestId('open-modal-btn').click();
+    //Open the modal
+    await page.locator("#open-modal-btn").click();
 
-  // Verify modal is visible
-  const modal = page.locator('.modal-content');
-  await expect(modal).toBeVisible();
-  await expect(modal).toContainText('Important Information');
+    //Verify modal is visible 
+    const modal = page.locator("#simple-modal");
+    await expect(modal).toBeVisible();
+    await expect(modal).toContainText("Information Modal");
 
-  // Close the modal
-  await page.getByTestId('close-modal-btn').click();
+    //Close the modal
+    await page.locator("#close-modal-btn").click();
 
-  // Verify modal is hidden
-  await expect(modal).toBeHidden();
-});
+    //Verify modal is hidden 
+     await expect(modal).toBeHidden();
+})

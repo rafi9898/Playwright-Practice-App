@@ -1,16 +1,15 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('Exercise 18: Drag and Drop an Element', async ({ page }) => {
-  await page.goto('/module-4/exercise-18');
+test("Exercise 18: Perform Drag and Drop", async ({page}) => {
+    await page.goto("/module-4/exercise-18");
 
-  const dragSource = page.locator('#draggable-item');
-  const dropTarget = page.locator('#dropzone');
+    const dragSource = page.locator("#drag-item-item-b");
+    const dropTarget = page.locator("#target-area");
 
-  // Perform drag and drop
-  await dragSource.dragTo(dropTarget);
+    //Perform drag and drop
+    await dragSource.dragTo(dropTarget);
 
-  // Verify success
-  const successMsg = page.locator('#drop-success');
-  await expect(successMsg).toBeVisible();
-  await expect(successMsg).toHaveText('Item dropped successfully!');
-});
+    //Verify success
+    const successSource = page.locator(".dropped-item");
+    await expect(successSource).toContainText("Item B");
+})

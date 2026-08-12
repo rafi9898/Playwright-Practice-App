@@ -1,24 +1,26 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('Exercise 14: Select Checkboxes and Radio Buttons', async ({ page }) => {
-  await page.goto('/module-4/exercise-14');
+test("Exercise 14: Work with Checkboxes and Radio Buttons", async ({page}) => {
+    await page.goto("/module-4/exercise-14");
 
-  // Radio button
-  const radioVanilla = page.locator('input[type="radio"][value="Vanilla"]');
-  await radioVanilla.check();
-  await expect(radioVanilla).toBeChecked();
+    //Radio button
+    const radioVanilla = page.locator("#flavor-vanilla");
+    await radioVanilla.check();
+    await expect(radioVanilla).toBeChecked();
 
-  // Checkboxes
-  const checkSprinkles = page.locator('input[type="checkbox"][value="Sprinkles"]');
-  const checkCherry = page.locator('input[type="checkbox"][value="Cherry"]');
-  
-  await checkSprinkles.check();
-  await expect(checkSprinkles).toBeChecked();
-  
-  await checkCherry.check();
-  await expect(checkCherry).toBeChecked();
+    //checkboxes 
+    const checkSprinkles = page.locator("#topping-sprinkles");
+    const checkNuts = page.locator("#topping-nuts");
 
-  // Verify the summary result
-  const summary = page.locator('#ice-cream-summary');
-  await expect(summary).toContainText('You ordered Vanilla with Sprinkles, Cherry');
-});
+    await checkSprinkles.check();
+    await checkNuts.check();
+
+    await expect(checkSprinkles).toBeChecked();
+    await expect(checkNuts).toBeChecked();
+
+    //Verify the summary result
+    const resultFlavor = page.locator("#result-flavor");
+    const resultToppings = page.locator("#result-toppings");
+    await expect(resultFlavor).toContainText("Vanilla");
+    await expect(resultToppings).toContainText("sprinkles, nuts");
+})
